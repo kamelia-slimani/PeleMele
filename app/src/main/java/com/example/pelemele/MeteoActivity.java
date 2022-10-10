@@ -5,8 +5,10 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.media.Image;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
@@ -55,6 +57,7 @@ public class MeteoActivity extends AppCompatActivity {
         this.longlat = findViewById(R.id.longlat);
         this.ville = findViewById(R.id.ville);
         this.icone = findViewById(R.id.icone);
+        icone.setImageResource(R.drawable._10d);
 
         Runnable runnable = () -> {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -81,26 +84,27 @@ public class MeteoActivity extends AppCompatActivity {
                             InputStream in = null;
                             InputStream ic = null;
 
-                            Bitmap bitmap = null;
                             try {
                                 in = new java.net.URL(url).openStream();
                                 JSONObject res = readStream(in);
-                                JSONObject v =  res.getJSONObject("main");
+                                JSONObject v = res.getJSONObject("main");
                                 JSONArray jArr = res.getJSONArray("weather");
                                 JSONObject JSONWeather = jArr.getJSONObject(0);
 
 
-                                Log.i("MeteoActivity", ""+JSONWeather.get("icon"));
-                                ville.setText(res.get("name")+"");
-                                temperature.setText(getResources().getText(R.string.temperature)+ "" + v.get("temp") + " °C");
-                                ressenti.setText(getResources().getText(R.string.ressenti)+ "" +v.get("feels_like") + "°C");
-                                humidite.setText(getResources().getText(R.string.humidite)+ ""  +v.get("humidity") + "%");
-                                temp_max.setText(getResources().getText(R.string.minimum)+ ""  +v.get("temp_max") + "°C");
-                                temp_min.setText(getResources().getText(R.string.maximum)+ ""  +v.get("temp_min") + "°C");
-                                pression.setText(getResources().getText(R.string.pression)+ ""  +v.get("pressure") + "hPa");
+                                Log.i("MeteoActivity", "" + JSONWeather.get("icon"));
+                                //String u= "http://openweathermap.org/img/wn/10d@2x.png";
+
+                                ville.setText(res.get("name") + "");
+                                temperature.setText(getResources().getText(R.string.temperature) + "" + v.get("temp") + " °C");
+                                ressenti.setText(getResources().getText(R.string.ressenti) + "" + v.get("feels_like") + "°C");
+                                humidite.setText(getResources().getText(R.string.humidite) + "" + v.get("humidity") + "%");
+                                temp_max.setText(getResources().getText(R.string.minimum) + "" + v.get("temp_max") + "°C");
+                                temp_min.setText(getResources().getText(R.string.maximum) + "" + v.get("temp_min") + "°C");
+                                pression.setText(getResources().getText(R.string.pression) + "" + v.get("pressure") + "hPa");
 
 
-                            } catch (IOException | JSONException e) {
+                            } catch (IOException | JSONException  e) {
                                 throw new RuntimeException(e);
                             }
 
