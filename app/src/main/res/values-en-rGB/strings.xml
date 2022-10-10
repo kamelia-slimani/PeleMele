@@ -27,4 +27,10 @@
     <string name="quitter">Quit</string>
     <string name="suspendre">Suspend</string>
     <string name="temps">Wheather</string>
+    <string name="activation">Enable</string>
+    <string name="desactivation">Disable</string>
+    <string name="Valeur">value</string>
+    <string name="Accelerometre">Accelerometer</string>
+    <string name="Magnetometre">Magnetometer</string>
+    <string name="ville">City</string>
 </resources>

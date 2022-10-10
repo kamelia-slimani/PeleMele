@@ -3,11 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1645" />
-        <entry key="app/src/main/res/layout/activity_capteur.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_capteur.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_chronometre.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_contact.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_contact_item.xml" value="0.11091234347048301" />
+        <entry key="app/src/main/res/layout/activity_contact_item.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_image.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_image_view.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_image_view2.xml" value="0.1" />
@@ -16,7 +17,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.14022140221402213" />
         <entry key="app/src/main/res/layout/activity_meteo.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_photo.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_selection.xml" value="0.1671195652173913" />
+        <entry key="app/src/main/res/layout/activity_select.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_selection.xml" value="0.1" />
         <entry key="app/src/main/res/menu/ menu_main.xml" value="0.335" />
         <entry key="app/src/main/res/menu/ menu_main.xml..tld" value="0.3194871794871795" />
         <entry key="app/src/main/res/menu/ menu_main.xml.tld" value="0.3194871794871795" />

@@ -8,12 +8,14 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CapteurActivity extends AppCompatActivity implements SensorEventListener{
+public class CapteurActivity extends AppCompatActivity {
 
     protected SensorManager sensorManager;
     protected Sensor accelerometre, magnetometre;
@@ -22,12 +24,15 @@ public class CapteurActivity extends AppCompatActivity implements SensorEventLis
 
     protected Switch capteur;
 
+    protected TextView valeurA, valeurM;
+    protected ImageView boussole;
 
     protected Paint paint;
+    private float[] gravity = new float[3];
+    private float[] magnetique = new float[3];
 
-    protected float ax, ay, az, mx, my, mz;
-
-    protected ImageView imageView;
+    private float[] orientation = new float[3];
+    private float[] matrix = new float[9];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +40,82 @@ public class CapteurActivity extends AppCompatActivity implements SensorEventLis
         setContentView(R.layout.activity_capteur);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         this.capteur = findViewById(R.id.on_off);
+        this.valeurA = findViewById(R.id.valAccel);
+        this.valeurM = findViewById(R.id.valMagneto);
+        this.boussole = findViewById(R.id.boussole);
+
+        this.boussole.setVisibility(View.INVISIBLE);
+
         this.active = false;
         this.paint = new Paint();
         this.paint.setStrokeWidth(10);
         this.sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         this.accelerometre = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        this.accelerometre = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        this.capteur.setOnClickListener(v -> onClickSwitch());
-        this.imageView = findViewById(R.id.canvas);
+        this.magnetometre = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
 
+
+        SensorEventListener sensorEventListenerAccelerometre = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                gravity = event.values;
+                valeurA.setText(getResources().getText(R.string.Accelerometre)+" : \nx = "+gravity[0] + "\ny = "+gravity[1] +"\nz = "+gravity[2]);
+                SensorManager.getRotationMatrix(matrix, null, gravity, magnetique);
+                SensorManager.getOrientation(matrix, orientation);
+
+                //boussole.setRotation((float) (-floatOrientation[0]*180/3.14159)-50);
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
+
+        SensorEventListener sensorEventListenerMagnetometre = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                magnetique = event.values;
+
+                valeurM.setText(getResources().getText(R.string.Magnetometre)+" : \nx = "+magnetique[0] + "\ny = "+magnetique[1] +"\nz = "+magnetique[2]);
+                SensorManager.getRotationMatrix(matrix, null, gravity, magnetique);
+                SensorManager.getOrientation(matrix, orientation);
+
+                boussole.setRotation((float) (-orientation[0] * 180 / 3.14159));
+
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
+
+        this.capteur.setOnClickListener(v -> {
+
+            if (!active) {
+
+                sensorManager.registerListener(sensorEventListenerAccelerometre, accelerometre, SensorManager.SENSOR_DELAY_NORMAL);
+                sensorManager.registerListener(sensorEventListenerMagnetometre, magnetometre, SensorManager.SENSOR_DELAY_NORMAL);
+                capteur.setText(getResources().getText(R.string.desactivation));
+                boussole.setVisibility(View.VISIBLE);
+
+
+
+            } else {
+
+                sensorManager.unregisterListener(sensorEventListenerAccelerometre);
+                sensorManager.unregisterListener(sensorEventListenerMagnetometre);
+                capteur.setText(getResources().getText(R.string.activation));
+                boussole.setVisibility(View.INVISIBLE);
+                valeurA.setText("");
+                valeurM.setText("");
+
+            }
+            active = !active;
+        });
     }
+}
 
+/*
     public void onClickSwitch() {
         if(!this.active){
 
@@ -89,7 +158,7 @@ public class CapteurActivity extends AppCompatActivity implements SensorEventLis
 
         double magnitude = Math.sqrt((mx * mx) + (my * my) + (mz * mz));
         CanvasAccel c = new CanvasAccel(this, (int) ax, (int) ay);
-       // this.imageView.draw(c.canvas);
+        // this.imageView.draw(c.canvas);
         Log.i("CapteurActivity", "x "+ ax +" y"+ ay +" z"+ az);
         Log.i("CapteurActivity","mag " + magnitude);
 
@@ -115,4 +184,4 @@ public class CapteurActivity extends AppCompatActivity implements SensorEventLis
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
-}
+}*/

@@ -3,8 +3,14 @@ package com.example.pelemele;
 import android.Manifest;
 
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +18,13 @@ import android.os.Bundle;
 import androidx.core.app.ActivityCompat;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 import java.io.*;
+import java.net.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import static com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY;
@@ -26,7 +34,8 @@ public class MeteoActivity extends AppCompatActivity {
     protected Button longlat;
     protected FusedLocationProviderClient fusedLocationClient;
 
-    protected TextView temperature, ressenti, humidite, temp_max, temp_min, pression;
+    protected ImageView icone;
+    protected TextView temperature, ressenti, humidite, temp_max, temp_min, pression, ville;
     protected double longitude, latitude;
 
 
@@ -44,6 +53,9 @@ public class MeteoActivity extends AppCompatActivity {
         this.temp_min = findViewById(R.id.temp_min);
         this.pression = findViewById(R.id.pression);
         this.longlat = findViewById(R.id.longlat);
+        this.ville = findViewById(R.id.ville);
+        this.icone = findViewById(R.id.icone);
+
         Runnable runnable = () -> {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -67,11 +79,19 @@ public class MeteoActivity extends AppCompatActivity {
                         if((this.longitude!=0) && (latitude!= 0)){
                             String url ="https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=b67d7b801a7f3c6347a42667b2a0b282&lang=fr&units=metric";
                             InputStream in = null;
+                            InputStream ic = null;
+
+                            Bitmap bitmap = null;
                             try {
                                 in = new java.net.URL(url).openStream();
                                 JSONObject res = readStream(in);
                                 JSONObject v =  res.getJSONObject("main");
+                                JSONArray jArr = res.getJSONArray("weather");
+                                JSONObject JSONWeather = jArr.getJSONObject(0);
 
+
+                                Log.i("MeteoActivity", ""+JSONWeather.get("icon"));
+                                ville.setText(res.get("name")+"");
                                 temperature.setText(getResources().getText(R.string.temperature)+ "" + v.get("temp") + " °C");
                                 ressenti.setText(getResources().getText(R.string.ressenti)+ "" +v.get("feels_like") + "°C");
                                 humidite.setText(getResources().getText(R.string.humidite)+ ""  +v.get("humidity") + "%");
@@ -123,6 +143,7 @@ public class MeteoActivity extends AppCompatActivity {
         JSONObject res = readStream(in) ;
         System.out.println(res);
     }
+
 
 
 }

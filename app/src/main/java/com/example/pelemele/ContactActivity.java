@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -21,14 +22,22 @@ import static android.content.ContentValues.TAG;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class ContactActivity extends AppCompatActivity {
-    ArrayList<Contact> contacts;
-    RecyclerView rvContacts;
+    protected ArrayList<Contact> contacts;
+    protected RecyclerView rvContacts;
+
+    protected LinearLayout linearLayouth;
+
+    protected ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+
+        this.linearLayouth = findViewById(R.id.LinearLayout);
+        this.imageView= findViewById(R.id.contactPhoto);
+
         Log.i("ContactActivity", "Avant la permission");
         checkPermission();
         Log.i("ContactActivity", "findViewById");
@@ -37,15 +46,7 @@ public class ContactActivity extends AppCompatActivity {
             Log.i("ContactActivity", "permission granted");
         } else {
             Log.i("ContactActivity", "permission not granted");
-        }/*
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
-            Log.i(TAG, "Contacts permission NOT granted");
-            ActivityCompat.requestPermissions(ContactActivity.this,
-                    new String[]{Manifest.permission.READ_CONTACTS}, REQUEST);
         }
-        else {
-            Log.i(TAG, "Contacts permission granted");
-        }*/
         contacts = new ArrayList<Contact>();
         Cursor cursor = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
         while(cursor.moveToNext()){

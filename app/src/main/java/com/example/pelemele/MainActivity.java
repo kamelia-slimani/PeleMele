@@ -90,6 +90,7 @@ public class MainActivity  extends AppCompatActivity{
         public void onClickPhoto(View view) {
             Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             launcher.launch(i);
+
             }
         public void onClickChrono(View view) {
             Intent i = new Intent(MainActivity.this, ChronometreActivity.class);
@@ -121,7 +122,7 @@ public class MainActivity  extends AppCompatActivity{
     }
 
     public void onClickSelection(View view) {
-        Intent i = new Intent(MainActivity.this, SelectionActivity.class);
+        Intent i = new Intent(MainActivity.this, SelectActivity.class);
         startActivity(i);
     }
     public boolean onCreateOptionsMenu(Menu menu) {

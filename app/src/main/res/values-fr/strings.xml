@@ -27,4 +27,10 @@
     <string name="humidite">Humidité</string>
     <string name="quitter">Quitter</string>
     <string name="suspendre">Suspendre</string>
+    <string name="activation">Activation</string>
+    <string name="desactivation">Désactivation</string>
+    <string name="Valeur">valeur</string>
+    <string name="Accelerometre">Acceléromètre</string>
+    <string name="Magnetometre">Magnétomètre</string>
+    <string name="ville">Ville</string>
 </resources>
