@@ -8,78 +8,78 @@
         tools:context=".MainActivity">
     <Button
             android:text="@string/selection"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/selection"
-            app:layout_constraintTop_toTopOf="@+id/bonjour"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="-1dp"
+            app:layout_constraintStart_toStartOf="parent"
             android:textColor="#000000" tools:ignore="TextContrastCheck"
-            android:backgroundTint="@color/purple_200" android:layout_marginTop="544dp"
-            android:onClick="onClickSelection"/>
+            android:backgroundTint="#018CCC" android:layout_marginTop="464dp"
+            android:onClick="onClickSelection" app:layout_constraintTop_toBottomOf="@+id/bonjour"/>
     <Button
             android:text="@string/photo"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/photo"
             app:layout_constraintTop_toTopOf="@+id/bonjour"
-            android:textColor="#000000" android:backgroundTint="#3F51B5" tools:ignore="TextContrastCheck"
+            android:textColor="#000000" android:backgroundTint="#C6FF84" tools:ignore="TextContrastCheck"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="68dp" android:onClick="onClickPhoto"
     />
     <Button
             android:text="@string/chronometre"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/chronometre"
             app:layout_constraintTop_toTopOf="@+id/bonjour"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="-1dp"
             android:textColor="#000000" tools:ignore="TextContrastCheck,DuplicateClickableBoundsCheck"
-            android:backgroundTint="#4CAF50" android:layout_marginTop="136dp"
+            android:backgroundTint="#EF0A58" android:layout_marginTop="136dp"
             android:onClick="onClickChrono"/>
     <Button
             android:text="@string/image"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/image"
             app:layout_constraintTop_toTopOf="@+id/bonjour"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="-1dp"
             android:textColor="#000000" tools:ignore="TextContrastCheck"
-            android:backgroundTint="#E91E63" android:layout_marginTop="204dp" android:onClick="onClickImage"/>
+            android:backgroundTint="#EF87AB" android:layout_marginTop="204dp" android:onClick="onClickImage"/>
     <Button
             android:text="@string/activitéLongue"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/activitelongue"
             app:layout_constraintTop_toTopOf="@+id/bonjour"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="-1dp"
             android:textColor="#000000" tools:ignore="TextContrastCheck"
-            android:backgroundTint="#03A9F4" android:layout_marginTop="272dp" android:onClick="onClickActivity"/>
+            android:backgroundTint="#9255FF" android:layout_marginTop="272dp" android:onClick="onClickActivity"/>
     <Button
             android:text="@string/meteo"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/meteo"
             app:layout_constraintTop_toTopOf="@+id/bonjour"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="-1dp"
             android:textColor="#000000" tools:ignore="TextContrastCheck"
-            android:backgroundTint="#FFEB3B" android:layout_marginTop="340dp" android:onClick="onClickMeteo"/>
+            android:backgroundTint="#A40FBD" android:layout_marginTop="340dp" android:onClick="onClickMeteo"/>
     <Button
             android:text="@string/contact"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/contact"
             app:layout_constraintTop_toTopOf="@+id/bonjour"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="-1dp"
             android:textColor="#000000" tools:ignore="TextContrastCheck"
-            android:backgroundTint="#9C27B0" android:layout_marginTop="408dp" android:onClick="onClickContact"/>
+            android:backgroundTint="#D993E4" android:layout_marginTop="408dp" android:onClick="onClickContact"
+            android:gravity="center"/>
     <Button
             android:text="@string/capteur"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/capteur_activity"
-            app:layout_constraintTop_toTopOf="@+id/bonjour"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="-1dp"
             android:textColor="#000000" tools:ignore="TextContrastCheck"
-            android:backgroundTint="#F44336" android:layout_marginTop="476dp" android:onClick="onClickCapteur"/>
+            android:backgroundTint="#72B7D6" android:layout_marginTop="396dp" android:onClick="onClickCapteur"
+            android:gravity="center" app:layout_constraintTop_toBottomOf="@+id/bonjour"/>
     <Button
             android:text="@string/Bonjour"
-            android:layout_width="412dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp" android:id="@+id/bonjour"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="90dp"
+            app:layout_constraintTop_toTopOf="parent"
             android:textColor="#000000" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/photo" app:layout_constraintBottom_toTopOf="@+id/photo"
-            android:textColorHighlight="#000000" android:backgroundTint="#FF9800"
+            android:textColorHighlight="#000000" android:backgroundTint="#FAC06B"
             tools:ignore="TextContrastCheck,TextContrastCheck" app:layout_constraintHorizontal_bias="1.0"
-            android:onClick="onClickBonjour"/>
+            android:onClick="onClickBonjour" android:layout_marginTop="50dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

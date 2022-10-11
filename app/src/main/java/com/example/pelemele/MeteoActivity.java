@@ -27,6 +27,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.*;
+import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import static com.google.android.gms.location.LocationRequest.PRIORITY_HIGH_ACCURACY;
@@ -39,6 +40,8 @@ public class MeteoActivity extends AppCompatActivity {
     protected ImageView icone;
     protected TextView temperature, ressenti, humidite, temp_max, temp_min, pression, ville;
     protected double longitude, latitude;
+
+    protected HashMap<String, Integer> hashMap;
 
 
 
@@ -57,7 +60,29 @@ public class MeteoActivity extends AppCompatActivity {
         this.longlat = findViewById(R.id.longlat);
         this.ville = findViewById(R.id.ville);
         this.icone = findViewById(R.id.icone);
-        icone.setImageResource(R.drawable._10d);
+
+
+        hashMap = new HashMap<>();
+        hashMap.put("01d", R.drawable._01d);
+        hashMap.put("0nd", R.drawable._01n);
+        hashMap.put("02d", R.drawable._02d);
+        hashMap.put("02n", R.drawable._02n);
+        hashMap.put("03d", R.drawable._03d);
+        hashMap.put("03n", R.drawable._03n);
+        hashMap.put("04d", R.drawable._04d);
+        hashMap.put("04n", R.drawable._04n);
+        hashMap.put("09d", R.drawable._09d);
+        hashMap.put("09n", R.drawable._09n);
+        hashMap.put("10d", R.drawable._10d);
+        hashMap.put("10n", R.drawable._10n);
+        hashMap.put("11d", R.drawable._11d);
+        hashMap.put("11n", R.drawable._11n);
+        hashMap.put("13d", R.drawable._13d);
+        hashMap.put("13n", R.drawable._13n);
+        hashMap.put("50d", R.drawable._50d);
+        hashMap.put("50n", R.drawable._50n);
+
+        //icone.setImageResource(R.drawable._10d);
 
         Runnable runnable = () -> {
             fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -82,7 +107,6 @@ public class MeteoActivity extends AppCompatActivity {
                         if((this.longitude!=0) && (latitude!= 0)){
                             String url ="https://api.openweathermap.org/data/2.5/weather?lat="+latitude+"&lon="+longitude+"&appid=b67d7b801a7f3c6347a42667b2a0b282&lang=fr&units=metric";
                             InputStream in = null;
-                            InputStream ic = null;
 
                             try {
                                 in = new java.net.URL(url).openStream();
@@ -93,15 +117,22 @@ public class MeteoActivity extends AppCompatActivity {
 
 
                                 Log.i("MeteoActivity", "" + JSONWeather.get("icon"));
-                                //String u= "http://openweathermap.org/img/wn/10d@2x.png";
+
+                                runOnUiThread(() -> {
+                                    try {
+                                        icone.setImageResource(hashMap.get(JSONWeather.get("icon").toString()));
+                                    } catch (JSONException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                });
 
                                 ville.setText(res.get("name") + "");
-                                temperature.setText(getResources().getText(R.string.temperature) + "" + v.get("temp") + " °C");
-                                ressenti.setText(getResources().getText(R.string.ressenti) + "" + v.get("feels_like") + "°C");
-                                humidite.setText(getResources().getText(R.string.humidite) + "" + v.get("humidity") + "%");
-                                temp_max.setText(getResources().getText(R.string.minimum) + "" + v.get("temp_max") + "°C");
-                                temp_min.setText(getResources().getText(R.string.maximum) + "" + v.get("temp_min") + "°C");
-                                pression.setText(getResources().getText(R.string.pression) + "" + v.get("pressure") + "hPa");
+                                temperature.setText(getResources().getText(R.string.temperature) + " " + v.get("temp") + "°C");
+                                ressenti.setText(getResources().getText(R.string.ressenti) + " " + v.get("feels_like") + "°C");
+                                humidite.setText(getResources().getText(R.string.humidite) + " " + v.get("humidity") + "%");
+                                temp_max.setText(getResources().getText(R.string.minimum) + " " + v.get("temp_max") + "°C");
+                                temp_min.setText(getResources().getText(R.string.maximum) + " " + v.get("temp_min") + "°C");
+                                pression.setText(getResources().getText(R.string.pression) + " " + v.get("pressure") + "hPa");
 
 
                             } catch (IOException | JSONException  e) {
@@ -148,6 +179,15 @@ public class MeteoActivity extends AppCompatActivity {
         System.out.println(res);
     }
 
+    public static Drawable LoadImageFromWebOperations(String url) {
+        try {
+            InputStream is = (InputStream) new URL(url).getContent();
+            Drawable d = Drawable.createFromStream(is, "srcname");
+            return d;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 
 }

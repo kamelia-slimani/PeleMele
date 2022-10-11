@@ -20,13 +20,13 @@
             android:layout_marginBottom="200dp"/>
     <TextView
             android:text="@string/temperature"
-            android:layout_width="201dp"
-            android:layout_height="57dp" android:id="@+id/temperature"
+            android:layout_width="194dp"
+            android:layout_height="40dp" android:id="@+id/temperature"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.028"
-            android:layout_marginStart="1dp" android:textSize="20sp" android:layout_marginBottom="144dp"/>
+            app:layout_constraintHorizontal_bias="0.05"
+            android:layout_marginStart="1dp" android:textSize="20sp" android:layout_marginBottom="184dp"
+            app:layout_constraintEnd_toStartOf="@+id/temp_min"/>
     <TextView
             android:text="@string/minimum"
             android:layout_width="175dp"
@@ -35,17 +35,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.995"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/temp_max" android:layout_marginBottom="48dp"/>
+            app:layout_constraintBottom_toTopOf="@+id/temp_max" android:layout_marginBottom="56dp"/>
     <TextView
             android:text="@string/ressenti"
             android:layout_width="175dp"
             android:layout_height="wrap_content" android:id="@+id/ressenti"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temperature" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.025"
             app:layout_constraintVertical_bias="0.217" android:layout_marginStart="1dp" android:textSize="20sp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp" app:layout_constraintEnd_toStartOf="@+id/temp_max"/>
     <TextView
             android:text="@string/maximum"
             android:layout_width="175dp"
@@ -54,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temperature"
             app:layout_constraintHorizontal_bias="0.995"
-            app:layout_constraintVertical_bias="0.217" android:layout_marginStart="1dp" android:textSize="20sp"
+            app:layout_constraintVertical_bias="0.62" android:layout_marginStart="1dp" android:textSize="20sp"
             android:layout_marginTop="15dp" android:layout_marginBottom="32dp"
             app:layout_constraintBottom_toTopOf="@+id/pression"/>
     <TextView
@@ -65,18 +64,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/temperature" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.995"
-            app:layout_constraintVertical_bias="0.766" android:layout_marginStart="1dp" android:textSize="20sp"
+            app:layout_constraintVertical_bias="0.76" android:layout_marginStart="1dp" android:textSize="20sp"
             android:layout_marginTop="15dp"/>
     <TextView
             android:text="@string/humidite"
             android:layout_width="175dp"
             android:layout_height="wrap_content" android:id="@+id/humidite"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ressenti" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.025"
             android:layout_marginStart="1dp" android:textSize="20sp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp" app:layout_constraintEnd_toStartOf="@+id/pression"/>
     <TextView
             android:text="@string/ville"
             android:layout_width="361dp"

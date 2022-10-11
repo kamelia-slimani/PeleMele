@@ -8,8 +8,8 @@
         tools:context=".ImageActivity" android:id="@+id/image">
 
     <ImageView
-            android:layout_width="302dp"
-            android:layout_height="524dp" app:srcCompat="@drawable/ic_launcher_foreground"
+            android:layout_width="349dp"
+            android:layout_height="624dp" app:srcCompat="@drawable/ic_launcher_foreground"
             android:id="@+id/imageView" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="50dp" app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="50dp" app:layout_constraintStart_toStartOf="parent"

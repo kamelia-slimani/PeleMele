@@ -12,26 +12,25 @@
             android:layout_width="173dp"
             android:layout_height="85dp" android:id="@+id/lancer"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="338dp" android:layout_marginEnd="153dp"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="338dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="153dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+    />
     <ProgressBar
             style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
             android:layout_width="297dp"
             android:layout_height="78dp"
             android:id="@+id/progressBar" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="238dp" android:layout_marginEnd="57dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="7dp" app:layout_constraintBottom_toTopOf="@+id/lancer"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="57dp"
-    />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/lancer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.946"/>
     <TextView
             android:layout_width="192dp"
             android:layout_height="95dp" android:id="@+id/temps"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="161dp" android:layout_marginEnd="153dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="58dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/progressBar" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="153dp" android:foregroundGravity="center_vertical" android:gravity="center"
-            android:textSize="24sp"/>
+            android:foregroundGravity="center_vertical" android:gravity="center"
+            android:textSize="24sp" app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintVertical_bias="0.605"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

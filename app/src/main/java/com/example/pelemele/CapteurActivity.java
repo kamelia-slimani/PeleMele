@@ -2,6 +2,7 @@ package com.example.pelemele;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,6 +11,7 @@ import android.hardware.SensorManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,8 @@ public class CapteurActivity extends AppCompatActivity {
     private float[] orientation = new float[3];
     private float[] matrix = new float[9];
 
+    protected  CanvasAccel canvasAccel;
+    protected RelativeLayout rl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,7 @@ public class CapteurActivity extends AppCompatActivity {
         this.valeurA = findViewById(R.id.valAccel);
         this.valeurM = findViewById(R.id.valMagneto);
         this.boussole = findViewById(R.id.boussole);
+        this.rl = findViewById(R.id.fleche);
 
         this.boussole.setVisibility(View.INVISIBLE);
 
@@ -63,13 +68,17 @@ public class CapteurActivity extends AppCompatActivity {
                 SensorManager.getRotationMatrix(matrix, null, gravity, magnetique);
                 SensorManager.getOrientation(matrix, orientation);
 
-                //boussole.setRotation((float) (-floatOrientation[0]*180/3.14159)-50);
+                Canvas c = new Canvas();
+                Paint p = new Paint();
+                canvasAccel = new CanvasAccel(CapteurActivity.this,p, c, (int)gravity[0],(int)gravity[1], (int) gravity[2]);
+                rl.addView(canvasAccel);
             }
 
             @Override
             public void onAccuracyChanged(Sensor sensor, int accuracy) {
             }
         };
+
 
         SensorEventListener sensorEventListenerMagnetometre = new SensorEventListener() {
             @Override
@@ -112,6 +121,8 @@ public class CapteurActivity extends AppCompatActivity {
             }
             active = !active;
         });
+
+
     }
 }
 
